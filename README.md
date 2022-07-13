@@ -3,10 +3,10 @@ we proposed PRMeth, a method to deconvolve tumor mixtures using partially availa
 # How to use
 ## Install and load these packages
 (''')
-install.packages("matrixStats")
-install.packages("quadprog")
-library(matrixStats)
-library(quadprog)
+    install.packages("matrixStats")
+    install.packages("quadprog")
+    library(matrixStats)
+    library(quadprog)
 (''')
 
 ![](https://github.com/hedingqin/PRMeth/blob/main/PRMeth/picture/optimalK.png)
