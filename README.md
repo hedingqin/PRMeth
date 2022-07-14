@@ -1,7 +1,7 @@
 # Introduction
 we proposed PRMeth, a method to deconvolve tumor mixtures using partially available DNA methylation data. By adopting an iteratively optimized non-negative matrix factorization framework, PRMeth took DNA methylation profiles of a portion of the cell types in the tissue mixtures (including blood and solid tumors) as input to estimate the proportions of all cell types as well as the methylation profiles of unknown cell types simultaneously.
 # How to use?
-First, you download this file locally from GitHub and open it using Rstudio.
+First, you download this file locally from GitHub and load function codes in the *R* folder using Rstudio.
 ## Installing and loading these packages
 ```
     install.packages("matrixStats")
@@ -30,7 +30,7 @@ cg12866960 0.8957482 0.8925703 0.1085343 0.8494344 0.8423281  0.1688397 0.766855
 cg18145759 0.7492490 0.6895485 0.2148763 0.5918013 0.6318281  0.2438058 0.6496115
 cg23907051 0.8228125 0.7787870 0.4310057 0.7115869 0.7640459  0.3346429 0.7208708
 ```
-## selecting CpG sites
+## selecting CpG sites by the coefficient of variation (cv)
 ```
     feat <- select_feature(Y,1,500)
     Y <- Y[feat,]
@@ -55,7 +55,7 @@ cg23907051 0.8228125 0.7787870 0.4310057 0.7115869 0.7640459  0.3346429 0.720870
     0.4
 ```
 The total number of cell types predicted by λ_BIC is 7 and λ is 0.4.
-## Predicting the methylation profiles of unknown cell types and the proportions of all cell types
+## Predicting the methylation profiles of unknown cell types and the proportions of all cell types by PRMeth
 ```
     out <- prmeth(Y = Y, W1 = W1, K = optimalK$optimal_K, iters = 1000,rssDiffStop = 1e-10)
 ```
@@ -80,7 +80,7 @@ B        0.131101628 0.07164629 1.179793e-01 0.08927853 0.05397268 0.048493496  
 2        0.003787403 0.29452830 4.336809e-19 0.15855196 0.06812948 0.197736993  6.182408e-02 0.26491330 0.122080176
 3        0.388039754 0.15923969 3.121293e-01 0.13379731 0.31105795 0.143822306  1.950210e-01 0.21414964 0.121131864
 ```
-The output proportion matrix is the proportions of seven cell types for 100 samples. The first four rows show the proportions of known cell types, and the last three rows show the proportions of unknown cell types.
+The output proportion matrix is the proportions of seven cell types for 100 samples. The first four rows show the proportions of known cell types, and the last three rows show the proportions of unknown cell types, which correspond to the cell types in the last three columns of W_test.
 
 ### the methylation profiles of cell types
 ```
